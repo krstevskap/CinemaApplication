@@ -34,9 +34,12 @@ namespace Cinema.Web
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
+            services.AddScoped(typeof(IOrderRepository), typeof(OrderRepository));
 
             services.AddTransient<ITicketService, Services.Implementation.TicketService>();
             services.AddTransient<IShoppingCartService, ShoppingCartService>();
+
+            services.AddTransient<IOrderService, OrderService>();
 
             services.AddControllersWithViews();
             services.AddRazorPages();
