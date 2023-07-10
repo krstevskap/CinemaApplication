@@ -1,0 +1,50 @@
+﻿@model List<Cinema.Domain.DomainModels.Ticket>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Tickets</h1>
+
+<div class="container">
+    <div class="row">
+        <a class="btn btn-success" asp-controller="Tickets" asp-action="Create">Add new ticket</a>
+    </div>
+    
+       @for (int i = 0; i < Model.Count; i++)
+       {
+           var item = Model[i];
+
+           if(i % 3 == 0)
+           {
+               @:<div class="row">
+           }
+
+        <div class="col-md-3 m-4">
+            <div class="card" style="width: 18rem; height: 30rem;">
+
+                <div class="card-body">
+                    <h3 class="card-title">@item.Title</h3>
+                    <p class="card-text">@item.Date</p>
+                    <p class="card-text">@item.Genre</p>
+                    
+                    
+                    <h6>Price: $@item.Price</h6>
+                </div>
+
+                <div class="card-footer">
+                    <a asp-controller="Tickets" asp-action="AddTicketToCart" asp-route-id="@item.Id" class="btn btn-info">Add to Card</a>
+                    <a asp-controller="Tickets" asp-action="Edit" asp-route-p="@item.Id" class="btn btn-secondary">Edit</a>
+                </div>
+            </div>
+        </div>
+
+
+           if(i % 3 == 2)
+           {
+               @:</div>
+           }
+       }
+</div>
+
